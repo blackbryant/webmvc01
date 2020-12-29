@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebMVC01.Models.Repository
 {
-    interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
-
+        IQueryable<Product> FindByProdcts(string name); 
     }
 }
