@@ -1,0 +1,43 @@
+﻿@model IEnumerable < WebMVC01.Models.Product>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditList</title>
+    <style>
+        label {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            var i = 0;
+
+            foreach (var p in Model)
+            {
+                @Html.Hidden("products[" + i + "].ProductID", p.ProductID)
+                <div style="padding:0.2em 1em;">
+                    <label style="width:30px;">  @p.ProductID</label>
+                    <label style="width:350px;"> @p.ProductName</label>
+                    <label>重設庫存量：</label>
+                    @Html.TextBox(
+                        "products[" + i + "].Quantity",
+                        p.Quantity,
+                        new { @style = "width:4em;text-align:right;padding:0 0.4em;" })
+                </div>
+                i++;
+            }
+            <div style="padding:1em 2em;"><input type="submit" value=" 送出 " /></div>
+
+        }
+    </div>
+</body>
+</html>
